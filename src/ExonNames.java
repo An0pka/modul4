@@ -11,6 +11,11 @@ public class ExonNames {
         String lowerCaseName = name.toLowerCase();
         return lowerCaseName.contains("a") || lowerCaseName.contains("o");
     }
+    public String getNameCode(String name) {
+        char firstLetter = name.charAt(0);
+        char lastLetter = name.charAt(3);
+            return String.valueOf(firstLetter + lastLetter);
+    }
 
     //Test output
     public static void main(String[] args) {
@@ -29,7 +34,7 @@ public class ExonNames {
         System.out.println("names.isNameLucky(\"Bigo\") = " + isNameLucky);
 
         //Should be BA
-//        String nameCode = names.getNameCode("boRA");
-//        System.out.println("names.getNameCode(\"boRA\") = " + nameCode);
-        }
+        String nameCode = names.getNameCode("boRA");
+        System.out.println("names.getNameCode(\"boRA\") = " + nameCode);
+    }
 }

@@ -58,11 +58,29 @@ public class SaveStarShip {
         if (distance <= 20) {
             return 1000;
         }
-        if (distance > 20) {
-            int temp = distance - 20;
-            return 1000 + (temp * 5);
-        } else return 0;
+
+        int extraDistance = distance - 1000;
+        return 1000 + extraDistance * 5;
     }
+    public void calculateMaxPower() {
+        Scanner scaner = new Scanner(System.in);
+        int first = scaner.nextInt();
+        int second = scaner.nextInt();
+        int third = scaner.nextInt();
+
+        int power = first > second ? first : second;
+        power = power > third ? power : third;
+        if (power < 10) {
+            System.out.println(power * 0.7f);
+        } else if (power <= 100) {
+            System.out.println(power * 1.2f);
+        } else if (power > 100) {
+            System.out.println(power * 2.1f);
+        }
+        scaner.close();
+    }
+
+    //Test output
     public static void main(String[] args) {
         SaveStarShip ship = new SaveStarShip();
 
@@ -82,6 +100,10 @@ public class SaveStarShip {
         System.out.println(ship.roundSpeed(55));
 
         //Should be 1005
-        System.out.println(ship.calculateNeededFuel(25));
+        System.out.println(ship.calculateNeededFuel(1001));
+
+        //Test stdin data - 1 3 5.
+        //Console ouput should be 3.5
+        ship.calculateMaxPower();
     }
 }

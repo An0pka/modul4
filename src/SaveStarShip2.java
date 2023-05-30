@@ -1,6 +1,7 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
-public class SaveStarShip {
+public class SaveStarShip2 {
     public int calculateDistance(int distance) {
         if (distance < 0) {
             return distance * -1;
@@ -79,10 +80,16 @@ public class SaveStarShip {
         }
 
     }
+    public String getMyPrizes(int ticket) {
+        String prize = "";
+        if (ticket % 10 == 0) {
+            prize += "crystall";
+        } if (ticket  )
+    }
 
     //Test output
     public static void main(String[] args) {
-        SaveStarShip ship = new SaveStarShip();
+        SaveStarShip2 ship = new SaveStarShip2();
 
         //Should be 10
         System.out.println(ship.calculateDistance(-10));

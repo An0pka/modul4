@@ -1,66 +1,34 @@
-import java.util.Objects;
+class RocketLauncher {
+    private String size;
+    private int rocketCount;
 
-class PointTest {
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public int getRocketCount() {
+        return rocketCount;
+    }
+
+    public void setRocketCount(int rocketCount) {
+        this.rocketCount = rocketCount;
+    }
+
     public static void main(String[] args) {
-        Point p1 = new Point();
-        p1.setX(1);
-        p1.setY(1);
-        p1.setZ(1);
+        RocketLauncher launcher = new RocketLauncher();
+        launcher.setSize("big");
+        launcher.setRocketCount(50);
 
-        Point p2 = new Point();
-        p2.setX(1);
-        p2.setY(1);
-        p2.setZ(1);
-
-        Point p3 = new Point();
-        p3.setX(2);
-        p3.setY(2);
-        p3.setZ(3);
-
-        System.out.println(p1.equals(p2)); //Should be true
-        System.out.println(p1.equals(p3)); //Should be false
-    }
-}
-
-class Point {
-    private int x;
-    private int y;
-    private int z;
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getZ() {
-        return z;
-    }
-
-    public void setZ(int z) {
-        this.z = z;
+        //Should be - Size is big, rocket count is 50
+        System.out.println(launcher);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return x == point.x && y == point.y && z == point.z;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y, z);
+    public String toString() {
+        return "Size is " + size + ", rocket count is " + rocketCount;
     }
 }

@@ -1,94 +1,26 @@
-class FirTest {
-    public int test(FirNum firNum, int number) {
-        return firNum.calc(number);
-    }
-
+class ControlPanelTest {
     public static void main(String[] args) {
-        FirNum firNum = new FirNum();
-        FirTest firTest = new FirTest();
-
-        //Should be 10
-        System.out.println(firTest.test(firNum, 10));
+        new ControlPanel().control();
     }
 }
-
-class FirNum {
-    public int calc(int n) {
-        return n;
-
-    }
-}
-
-class FirNumSum extends FirNum {
+class Altimeter {
     @Override
-    public int calc(int n) {
-        int count = 0;
-        while (n > 0) {
-            count += n;
-            n--;
-        }
-        return count;
+    public String toString() {
+        return "Measure height";
     }
 }
-
-class FirNumFactorial extends FirNum {
+class AirGauge {
     @Override
-    public int calc(int n) {
-        int count = 1;
-        int fact = n - 1;
-        if (n == 0 || n == 1) {
-            return 1;
-        } else if (n > 0) {
-            while (n > 0) {
-                count *= n;
-                n--;
-            }
-        }
-        return count;
+    public String toString() {
+        return "Measure air pressure";
     }
 }
+class ControlPanel {
+    private Altimeter altimeter = new Altimeter();
+    private AirGauge airGauge = new AirGauge();
 
-class FirNumMultiplyOdd extends FirNum {
-    @Override
-    public int calc(int n) {
-        int count = 1;
-        if (n == 0 || n == 1) {
-            return 1;
-        } else if (n > 0) {
-            while (n > 0) {
-                if (n % 2 != 0) {
-                    count *= n;
-
-                }
-                n--;
-            }
-        }
-        return count;
-    }
-
-}
-class FirNumFizzBuzz extends FirNum{
-    @Override
-    public int calc(int n) {
-        int count = 0;
-        if (n == 0 || n == 1){
-            return 0;
-        }
-
-        while (n > 0) {
-            if (n % 3 == 0 && n % 5 ==0){
-                n--;
-            }
-            if (n % 3 == 0 || n % 5 ==0){
-                count += n;
-            }
-            n--;
-        }
-        return count;
-}
-
-    public static void main(String[] args) {
-        FirNumFizzBuzz fb = new FirNumFizzBuzz();
-        System.out.println(fb.calc(15));
+    public void control(){
+        System.out.println(altimeter);
+        System.out.println(airGauge);
     }
 }

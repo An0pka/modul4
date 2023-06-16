@@ -1,52 +1,19 @@
-class BFG {
-    private int ammo = 1000;
-    private int damage = 50;
-    private String name = "BFG";
+import java.util.Arrays;
 
-    public BFG(int ammo, int damage, String name){
-        this.ammo = ammo;
-        this.damage = damage;
-        this.name = name;
-    }
-    public BFG(int ammo, int damage){
-        this.ammo = ammo;
-        this.damage = damage;
-    }
-    public BFG(int ammo){
-        this.ammo = ammo;
-    }
-    public BFG(){
-    }
+class PowTable {
 
-    public int getAmmo() {
-        return ammo;
-    }
+    public static final int[] POWERS_2 = new int[10];
+    static {
+        for (int i = 0; i < POWERS_2.length; i++) {
+            POWERS_2[i] = (i+1)*(i+1);
+        }
 
-    public int getDamage() {
-        return damage;
-    }
-
-    public String getName() {
-        return name;
-    }
-    @Override
-    public String toString() {
-        return name + ", ammo: " + ammo + ", damage: " + damage;
     }
 }
-class BfgTest {
+
+class PowTableTest {
     public static void main(String[] args) {
-        //ExtraGun, ammo: 10000, damage: 300
-        System.out.println(new BFG(10000, 300, "ExtraGun"));
-
-        //BFG, ammo: 5000, damage: 200
-        System.out.println(new BFG(5000, 200));
-
-        //BFG, ammo: 2000, damage: 50
-        System.out.println(new BFG(2000));
-
-        //BFG, ammo: 1000, damage: 50
-        System.out.println(new BFG());
-
+        //[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+        System.out.println(Arrays.toString(PowTable.POWERS_2));
     }
 }

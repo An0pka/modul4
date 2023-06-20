@@ -1,7 +1,8 @@
 import java.util.Arrays;
 class TargetFinder {
     public int[] findTarget(int[] aiCoords, int[][] targets){
-return null;
+        double dist;
+        return null;
     }
 }
 

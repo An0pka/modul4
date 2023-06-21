@@ -1,72 +1,50 @@
 class Level {
-    private LevelInfo levelInfo;
-    private Point[] points;
+    private int width;
+    private int height;
 
-
-    public Level(LevelInfo levelInfo, Point[] points) {
-        this.levelInfo = levelInfo;
-        this.points = points;
-    }
-    public int calculateLevelHash(){
-        int result =0;
-        for (int i = 0; i < points.length; i++) {
-            result += points[i].x * points[i].y;
-
-        }return result;
+    public Level(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 
-    @Override
-    public String toString() {
-        return "Quarke level, name is " + levelInfo.getName() + ", difficulty is " + levelInfo.getDifficulty() + ", point count is " + points.length;
+    public int getWidth() {
+        return width;
     }
 
-    static class Point {
-        private int x, y;
-
-        public Point(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
-    }
-
-    static class LevelInfo {
-        private String name;
-        private String difficulty;
-
-        public LevelInfo(String name, String difficulty) {
-            this.name = name;
-            this.difficulty = difficulty;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getDifficulty() {
-            return difficulty;
-        }
+    public int getHeight() {
+        return height;
     }
 }
 
-class LevelTest {
+class LevelLoader {
+    public void load(Level level) throws LevelTooBigException {
+        if (level.getHeight() * level.getWidth() < 100000) {
+            System.out.println("Level loaded");
+        } else {
+            throw new LevelTooBigException();
+        }
+    }
+}
+class LevelTooBigException extends Exception{
+    LevelTooBigException(){
+
+    }
+}
+
+class LevelLoaderTest {
     public static void main(String[] args) {
-        Level.Point p1 = new Level.Point(3, 5);
-        Level.Point p2 = new Level.Point(10, 100);
-        Level.Point p3 = new Level.Point(50, 40);
+        //Level loaded
+        try {
+            new LevelLoader().load(new Level(10, 20));
+        } catch (LevelTooBigException ex) {
+            System.out.println("Level too big");
+        }
 
-        Level.Point[] points = {p1, p2, p3};
-
-        Level.LevelInfo info = new Level.LevelInfo("Quarke Intro", "Easy");
-
-        //3015
-        System.out.println(new Level(info, points).calculateLevelHash());
+        //Level too big
+        try {
+            new LevelLoader().load(new Level(10000, 2000));
+        } catch (LevelTooBigException ex) {
+            System.out.println("Level too big");
+        }
     }
 }
